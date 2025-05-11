@@ -1,0 +1,1325 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Millennium Cleaning</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #FFD700;
+            color: black;
+        }
+        header {
+            background: black;
+            color: #FFD700;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .language-switch {
+            margin-left: 20px;
+            background: #FFD700;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .main, section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .main h1 {
+            font-size: 32px;
+            margin: 20px 0;
+        }
+        .main p {
+            font-size: 18px;
+        }
+        .main button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background: black;
+            color: #FFD700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: black;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: right;
+                padding: 10px 20px;
+            }
+            nav.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+
+<style>
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal {
+    animation: fadeInScale 0.4s ease forwards;
+    background: #fff;
+    color: #000;
+    padding: 30px 20px;
+    border: 3px solid black;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: black;
+    color: #FFD700;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+<style>
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
+<style>
+#backToTop {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: black;
+    color: #FFD700;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 1000;
+    display: none;
+}
+#telegramWidget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+#telegramWidget a {
+    background: #0088cc;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+<body>
+    
+
+    
+<!-- Фиксированная шапка -->
+<div class="top-bar">
+    <div></div>
+    <div class="contact">
+        <div class="phone">+998 94 002 99 79</div>
+        <div class="schedule">ежедневно 09:00 – 21:00</div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <div class="logo">Millennium Cleaning</div>
+    <nav>
+        <a href="#services">Услуги</a>
+        <a href="#about">О нас</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#gallery">Фото</a>
+    </nav>
+</div>
+
+<style>
+    .top-bar, .nav-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+    .top-bar {
+        top: 0;
+        background-color: #000;
+        color: #FFD700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 20px;
+        font-size: 14px;
+    }
+    .top-bar .contact {
+        text-align: right;
+    }
+    .top-bar .phone {
+        font-weight: bold;
+        color: #FFD700;
+    }
+    .top-bar .schedule {
+        font-size: 12px;
+        color: #FFD700;
+    }
+    .nav-bar {
+        top: 34px;
+        background-color: #FFD700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+    .nav-bar .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: #000;
+    }
+    .nav-bar nav a {
+        margin-left: 20px;
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .nav-bar nav a:hover {
+        text-decoration: underline;
+    }
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+        font-family: Arial, sans-serif;
+        padding-top: 100px;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+</style>
+<section class="main">
+        <h1 data-lang="ru">Химчистка<br>мягкой мебели<br>в Ташкенте</h1>
+        <h1 data-lang="uz" style="display:none;">Toshkentda<br>yumshoq mebellarni<br>kimyoviy tozalash</h1>
+        <p data-lang="ru">Чистота, комфорт и<br>профессионализм — в каждом заказе.</p>
+        <p data-lang="uz" style="display:none;">Har bir buyurtmada — tozalik, qulaylik va professionallik.</p>
+        <button data-lang="ru">Оформить заявку</button>
+        <button data-lang="uz" style="display:none;">Buyurtma berish</button>
+    
+    </section>
+
+    <section id="order" class="fade-in" style="padding: 40px 20px; text-align: center;">
+        <h2 data-lang="ru">Оформить заказ</h2>
+        <h2 data-lang="uz" style="display:none;">Buyurtma berish</h2>
+        <form id="orderForm" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="name" placeholder="Ваше имя" required style="padding:10px; font-size:16px;" />
+            <input type="tel" id="phone" placeholder="+998 (__) ___-__-__" required style="padding:10px; font-size:16px;" />
+            <textarea id="comment" placeholder="Комментарий" rows="4" style="padding:10px; font-size:16px;"></textarea>
+            <button type="submit" style="padding: 12px; font-size: 16px; background: black; color: #FFD700; border: none; border-radius: 4px;">Отправить</button>
+        </form>
+        <p id="status" style="margin-top: 10px;"></p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.2/imask.min.js">
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+<script>
+        const form = document.getElementById("orderForm");
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const comment = document.getElementById("comment").value;
+
+            const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+            const chatId = "@millenniumcleaninguz";  // можно заменить на ID
+            const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("status").innerText = "Заявка отправлена!";
+                        form.reset();
+                    } else {
+                        document.getElementById("status").innerText = "Ошибка отправки.";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById("status").innerText = "Ошибка соединения.";
+                });
+        });
+    
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+    
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <h2>Заявка отправлена</h2>
+        <p>Мы свяжемся с вами в ближайшее время</p>
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+    </div>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Наверх</button>
+<div id="telegramWidget">
+    <a href="https://t.me/millenniumcleaninguz" target="_blank">Написать в Telegram</a>
+</div>
+</body>
+</html>
+
+
+    <section id="services" class="fade-in">
+        <h2 data-lang="ru">Наши услуги</h2>
+        <h2 data-lang="uz" style="display:none;">Xizmatlarimiz</h2>
+        <p data-lang="ru">Химчистка диванов, кресел, ковров, матрасов и офисной мебели.</p>
+        <p data-lang="uz" style="display:none;">Divan, kreslo, gilam, matras va ofis mebellarini kimyoviy tozalash.</p>
+    
+    </section>
+
+    <section id="order" class="fade-in" style="padding: 40px 20px; text-align: center;">
+        <h2 data-lang="ru">Оформить заказ</h2>
+        <h2 data-lang="uz" style="display:none;">Buyurtma berish</h2>
+        <form id="orderForm" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="name" placeholder="Ваше имя" required style="padding:10px; font-size:16px;" />
+            <input type="tel" id="phone" placeholder="+998 (__) ___-__-__" required style="padding:10px; font-size:16px;" />
+            <textarea id="comment" placeholder="Комментарий" rows="4" style="padding:10px; font-size:16px;"></textarea>
+            <button type="submit" style="padding: 12px; font-size: 16px; background: black; color: #FFD700; border: none; border-radius: 4px;">Отправить</button>
+        </form>
+        <p id="status" style="margin-top: 10px;"></p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.2/imask.min.js">
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+<script>
+        const form = document.getElementById("orderForm");
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const comment = document.getElementById("comment").value;
+
+            const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+            const chatId = "@millenniumcleaninguz";  // можно заменить на ID
+            const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("status").innerText = "Заявка отправлена!";
+                        form.reset();
+                    } else {
+                        document.getElementById("status").innerText = "Ошибка отправки.";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById("status").innerText = "Ошибка соединения.";
+                });
+        });
+    
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+    
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <h2>Заявка отправлена</h2>
+        <p>Мы свяжемся с вами в ближайшее время</p>
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+    </div>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Наверх</button>
+<div id="telegramWidget">
+    <a href="https://t.me/millenniumcleaninguz" target="_blank">Написать в Telegram</a>
+</div>
+</body>
+</html>
+
+
+    <section id="advantages" class="fade-in">
+        <h2 data-lang="ru">Преимущества</h2>
+        <h2 data-lang="uz" style="display:none;">Afzalliklar</h2>
+        <ul style="list-style: none; padding: 0;">
+            <li data-lang="ru">✅ Профессиональное оборудование</li>
+            <li data-lang="uz" style="display:none;">✅ Professional uskunalar</li>
+            <li data-lang="ru">✅ Безопасные моющие средства</li>
+            <li data-lang="uz" style="display:none;">✅ Xavfsiz tozalovchi vositalar</li>
+            <li data-lang="ru">✅ Выезд в любой район Ташкента</li>
+            <li data-lang="uz" style="display:none;">✅ Toshkent bo'ylab xizmat</li>
+        </ul>
+    
+    </section>
+
+    <section id="order" class="fade-in" style="padding: 40px 20px; text-align: center;">
+        <h2 data-lang="ru">Оформить заказ</h2>
+        <h2 data-lang="uz" style="display:none;">Buyurtma berish</h2>
+        <form id="orderForm" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="name" placeholder="Ваше имя" required style="padding:10px; font-size:16px;" />
+            <input type="tel" id="phone" placeholder="+998 (__) ___-__-__" required style="padding:10px; font-size:16px;" />
+            <textarea id="comment" placeholder="Комментарий" rows="4" style="padding:10px; font-size:16px;"></textarea>
+            <button type="submit" style="padding: 12px; font-size: 16px; background: black; color: #FFD700; border: none; border-radius: 4px;">Отправить</button>
+        </form>
+        <p id="status" style="margin-top: 10px;"></p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.2/imask.min.js">
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+<script>
+        const form = document.getElementById("orderForm");
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const comment = document.getElementById("comment").value;
+
+            const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+            const chatId = "@millenniumcleaninguz";  // можно заменить на ID
+            const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("status").innerText = "Заявка отправлена!";
+                        form.reset();
+                    } else {
+                        document.getElementById("status").innerText = "Ошибка отправки.";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById("status").innerText = "Ошибка соединения.";
+                });
+        });
+    
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+    
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <h2>Заявка отправлена</h2>
+        <p>Мы свяжемся с вами в ближайшее время</p>
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+    </div>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Наверх</button>
+<div id="telegramWidget">
+    <a href="https://t.me/millenniumcleaninguz" target="_blank">Написать в Telegram</a>
+</div>
+</body>
+</html>
+
+
+    <section id="contacts" class="fade-in">
+        <h2 data-lang="ru">Контакты</h2>
+        <h2 data-lang="uz" style="display:none;">Kontaktlar</h2>
+        <p><strong>Телефон:</strong> <a href="tel:+998940029979">+998 94 002 99 79</a></p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/millenniumcleaninguz" target="_blank">@millenniumcleaninguz</a></p>
+        <iframe src="https://yandex.uz/map-widget/v1/-/CCUbeBh8GD" width="90%" height="300" frameborder="0"></iframe>
+    
+    </section>
+
+    <section id="order" class="fade-in" style="padding: 40px 20px; text-align: center;">
+        <h2 data-lang="ru">Оформить заказ</h2>
+        <h2 data-lang="uz" style="display:none;">Buyurtma berish</h2>
+        <form id="orderForm" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" id="name" placeholder="Ваше имя" required style="padding:10px; font-size:16px;" />
+            <input type="tel" id="phone" placeholder="+998 (__) ___-__-__" required style="padding:10px; font-size:16px;" />
+            <textarea id="comment" placeholder="Комментарий" rows="4" style="padding:10px; font-size:16px;"></textarea>
+            <button type="submit" style="padding: 12px; font-size: 16px; background: black; color: #FFD700; border: none; border-radius: 4px;">Отправить</button>
+        </form>
+        <p id="status" style="margin-top: 10px;"></p>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.2/imask.min.js">
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+<script>
+        const form = document.getElementById("orderForm");
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const comment = document.getElementById("comment").value;
+
+            const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+            const chatId = "@millenniumcleaninguz";  // можно заменить на ID
+            const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById("status").innerText = "Заявка отправлена!";
+                        form.reset();
+                    } else {
+                        document.getElementById("status").innerText = "Ошибка отправки.";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById("status").innerText = "Ошибка соединения.";
+                });
+        });
+    
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+    
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <h2>Заявка отправлена</h2>
+        <p>Мы свяжемся с вами в ближайшее время</p>
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+    </div>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Наверх</button>
+<div id="telegramWidget">
+    <a href="https://t.me/millenniumcleaninguz" target="_blank">Написать в Telegram</a>
+</div>
+</body>
+</html>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.2/imask.min.js">
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+<script>
+        function toggleMenu() {
+            const nav = document.getElementById('navMenu');
+            nav.classList.toggle('show');
+        }
+        let currentLang = 'ru';
+        function switchLanguage() {
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                el.style.display = (el.getAttribute('data-lang') === currentLang) ? 'none' : '';
+            });
+            currentLang = (currentLang === 'ru') ? 'uz' : 'ru';
+            document.querySelector('.language-switch').textContent = (currentLang === 'ru') ? "O'zbekcha" : "Русский";
+        }
+    
+// Маска для номера телефона
+var phoneMask = IMask(document.getElementById('phone'), {
+    mask: '+998 (00) 000-00-00'
+});
+
+// Простая проверка полей
+form.addEventListener("submit", function(e) {
+    const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    if (name.trim() === "" || phone.length < 18) {
+        e.preventDefault();
+        document.getElementById("status").innerText = "Пожалуйста, заполните имя и корректный номер телефона.";
+        return;
+    }
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const comment = document.getElementById("comment").value;
+
+    const token = "7583635188:AAHsa0Tb4op0oM4BUhJ7Y_U2b4nC1lnEmso";
+    const chatId = "@millenniumcleaninguz";
+    const message = `🧼 Новая заявка с сайта:%0A👤 Имя: ${name}%0A📞 Телефон: ${phone}%0A📝 Комментарий: ${comment}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`)
+        .then(response => {
+            if (response.ok) {
+                document.getElementById("modal").style.display = "flex";
+                form.reset();
+            } else {
+                alert("Ошибка отправки.");
+            }
+        })
+        .catch(() => {
+            alert("Ошибка соединения.");
+        });
+});
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+});
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<script>
+window.addEventListener('scroll', function () {
+    const btn = document.getElementById('backToTop');
+    if (window.scrollY > 300) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
+</script>
+
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <h2>Заявка отправлена</h2>
+        <p>Мы свяжемся с вами в ближайшее время</p>
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+    </div>
+</div>
+
+<button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Наверх</button>
+<div id="telegramWidget">
+    <a href="https://t.me/millenniumcleaninguz" target="_blank">Написать в Telegram</a>
+</div>
+</body>
+</html>
