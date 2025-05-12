@@ -1,69 +1,74 @@
 
 body {
-  margin: 0;
-  font-family: sans-serif;
   background-color: #FFD700;
-  color: #000;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 18px; /* увеличенный базовый размер */
+  color: #000; /* чёрный текст по умолчанию */
 }
 
 header {
   background-color: #000;
   color: #FFD700;
-  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 40px;
 }
 
 .logo {
+  font-size: 24px;
   font-weight: bold;
 }
 
 nav ul {
   list-style: none;
+  display: flex;
+  gap: 20px;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 15px;
 }
 
-nav ul li a {
+nav a {
   color: #FFD700;
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .contact-info {
   text-align: right;
-  font-size: 0.9em;
+  font-size: 14px;
 }
 
-main .hero {
+main {
+  padding: 60px 40px;
   text-align: center;
-  padding: 100px 20px;
 }
 
 .hero h1 {
-  font-size: 2em;
+  font-size: 36px; /* увеличенный заголовок */
+  font-weight: bold;
+  color: #000;
   margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 1.2em;
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
-.hero button {
-  padding: 10px 20px;
-  font-size: 1em;
+button {
   background-color: #000;
   color: #FFD700;
+  padding: 12px 24px;
   border: none;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
+  border-radius: 6px;
 }
 
-.hero button:hover {
-  background-color: #FFD700;
-  color: #000;
-  border: 1px solid #000;
+button:hover {
+  background-color: #333;
 }
+
