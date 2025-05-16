@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Millennium Cleaning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #111;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+    .hero {
+      padding: 60px 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+    }
+    .hero-text {
+      max-width: 50%;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .services, .booking, .testimonial, .contact {
+      padding: 60px 10%;
+      background: #fff;
+    }
+    .services h2, .booking h2, .testimonial h2, .contact h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .services-list {
+      display: flex;
+      gap: 20px;
+    }
+    .service-item {
+      flex: 1;
+      text-align: center;
+      border: 1px solid #eee;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    form input, form select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    footer {
+      padding: 30px 10%;
+      background: #f5f5f5;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Millennium Cleaning</strong></div>
+    <nav>
+      <a href="#">Главная</a>
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Профессиональная химчистка мебели в Ташкенте</h1>
+      <p>Онлайн-запись и заказ услуг по чистке диванов, кресел и стульев</p>
+      <button class="btn">Записаться</button>
+    </div>
+    <div>
+      <img src="https://via.placeholder.com/400x300" alt="Чистка дивана" style="border-radius: 8px;">
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Наши услуги</h2>
+    <div class="services-list">
+      <div class="service-item">Чистка диванов</div>
+      <div class="service-item">Чистка кресел</div>
+      <div class="service-item">Чистка матрасов</div>
+    </div>
+  </section>
+
+  <section class="booking">
+    <h2>Онлайн-запись</h2>
+    <form>
+      <input type="text" placeholder="Имя">
+      <input type="tel" placeholder="Телефон">
+      <select>
+        <option>Выберите услугу</option>
+        <option>Чистка дивана</option>
+        <option>Чистка кресла</option>
+        <option>Чистка матраса</option>
+      </select>
+      <input type="date">
+      <button type="submit" class="btn">Отправить</button>
+    </form>
+  </section>
+
+  <section class="testimonial" id="reviews">
+    <h2>Отзыв</h2>
+    <p>Отличный сервис! Моя мебель выглядит как новая. Рекомендую эту компанию.<br><strong>★★★★★ Иван Петров</strong></p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Контакты</h2>
+    <p>+998 71 234-56-78<br>info@example.com<br>г. Ташкент, ул. Примерная, д.1</p>
+    <p><a href="https://t.me/your_bot" target="_blank">Написать в Telegram</a></p>
+  </section>
+
+  <footer>
+    © 2025 Millennium Cleaning. Все права защищены.
+  </footer>
+</body>
+</html>
